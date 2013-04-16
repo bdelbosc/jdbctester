@@ -1,6 +1,8 @@
 package org.nuxeo;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -49,7 +51,7 @@ public class App {
 
     private static final String DEFAULT_REPEAT = "100";
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
 
         Properties prop = readProperties();
         String user = prop.getProperty("user");
@@ -68,7 +70,7 @@ public class App {
         ResultSet rs = null;
         TimerContext tc = null;
         int repeat = Integer.valueOf(System.getProperty(REPEAT_KEY,
-                DEFAULT_REPEAT));
+                DEFAULT_REPEAT)).intValue();
 
         log.info("Submiting " + repeat + " queries: " + query);
         try {
@@ -97,8 +99,6 @@ public class App {
                     ps.setObject(i, (Object) param);
                 } else if (type.equalsIgnoreCase("string")) {
                     ps.setString(i, param);
-                } else if (type.equalsIgnoreCase("long")) {
-                    ps.setLong(i, Long.valueOf(param));
                 } else if (type.equalsIgnoreCase("nstring")) {
                     ps.setNString(i, param);
                 } else {
@@ -176,13 +176,18 @@ public class App {
         return count;
     }
 
-    private static Properties readProperties() {
+    private static Properties readProperties() throws IOException {
         Properties prop = new Properties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream stream = loader.getResourceAsStream(System.getProperty(
-                CONFIG_KEY, DEFAULT_CONFIG_FILE));
+        FileInputStream fs;
         try {
-            prop.load(stream);
+            fs = new FileInputStream(System.getProperty(CONFIG_KEY));
+        } catch (FileNotFoundException e) {
+            log.error("Property file not found: " + System.getProperty(CONFIG_KEY, CONFIG_KEY), e);
+            return null;
+        }
+        try {
+            prop.load(fs);
+            fs.close();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         } catch (NullPointerException e) {
