@@ -25,6 +25,11 @@ oracle.properties and postgresql.properties.
 You can use a simple round trip sql command or a comple prepared
 statement with parameters.
 
+The default jdbctester.sh set the the following option you shoud check
+that it matches your database NLS.
+
+     -Duser.language=en -Duser.country=US 
+     
 
 # Usage
 
