@@ -22,10 +22,10 @@ SQL query.
 You can find 2 examples of properties file in the package
 oracle.properties and postgresql.properties.
 
-You can use a simple round trip sql command or a comple prepared
+You can use a simple round trip sql command or a complex prepared
 statement with parameters.
 
-The default jdbctester.sh set the the following option you shoud check
+The default jdbctester.sh set the following option you shoud check
 that it matches your database NLS.
 
      -Duser.language=en -Duser.country=US 
@@ -35,18 +35,20 @@ that it matches your database NLS.
 
 Invocation:
 
-    /path/to/jdbctester.sh PROPERTY_FILE [REPEAT]
+       /path/to/jdbctester.sh PROPERTY_FILE [REPEAT]
     
-
 REPEAT is number of time to repeat the SQL query
 
 Example:
 
-    ./jdbctester.sh postgresql.property 10
+      ./jdbctester.sh postgresql.property 10
 
 This will create a jdbctester.log file that looks like this:
 
-      org.nuxeo.App:
+        Connect to:jdbc:postgresql://localhost:5432/bdtest2 from strix
+        Submiting 10 queries: SELECT 1;
+        Fetched rows: 10, total bytes: 25, bytes/rows: 2.5
+
         connection:
                    count = 1
                mean rate = 0.44 calls/s
