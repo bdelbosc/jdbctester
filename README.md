@@ -7,45 +7,74 @@ Also it can be used to test prepared statement from JDBC.
 
 # Install
 
+## Using a binary package
+
 Get the latest package from: 
-<https://github.com/bdelbosc/jdbctester/downloads>
+<http://public.dev.nuxeo.com/~ben/jdbctester/>
  
-Then install:
+Then install where you want:
 
        tar xzvf jdbctester-*.tgz
 
-# Configuration
 
-Create a properties file that will contain the database access and the
-SQL query.
+## Building from sources
 
-You can find 2 examples of properties file in the package
-oracle.properties and postgresql.properties.
+Build:
 
-You can use a simple round trip sql command or a complex prepared
-statement with parameters.
+        mvn package
+		
+Create a binary package
 
-The default jdbctester.sh set the following option you shoud check
-that it matches your database NLS.
+        ./scripts/package.sh
+		
+Then untar where you want.
 
-     -Duser.language=en -Duser.country=US 
-     
+## Add your JDBC Driver
+
+If you need to access *other database than PostgreSQL, MySQL or
+MSSQL*, you will have to add the JDBC Driver in the
+$JDBCTESTER_HOME/lib repository.
+
 
 # Usage
 
-Invocation:
+## Configuration
+
+You need to create a configuration file that will contain the database
+access and the SQL query.
+
+You can find 2 templates of configuration file in the jdbctester home:
+
+- [oracle.properties](https://github.com/bdelbosc/jdbctester/blob/master/src/test/resources/oracle.properties)
+- [postgresql.properties](https://github.com/bdelbosc/jdbctester/blob/master/src/test/resources/postgresql.properties)
+
+Just copy one of them and edit to set your database credential and
+driver class.
+
+You can use a simple round trip SQL query to test only the
+jdbc/network latency or choose to run complex prepared statement with
+parameters.
+
+Note that by default jdbctester.sh set the following options, you
+shoud check that it matches your database locale:
+
+     -duser.language=en -Duser.country=US 
+
+
+## Invocation
 
        /path/to/jdbctester.sh PROPERTY_FILE [REPEAT]
     
-REPEAT is number of time to repeat the SQL query
+REPEAT is number of time to repeat the SQL query, the default value is
+10.
 
 Example:
 
-      ./jdbctester.sh postgresql.property 10
+      ./jdbctester.sh postgresql.properties 10
 
-This will create a jdbctester.log file that looks like this:
+This will create a jdbctester.log file and output something like this:
 
-        Connect to:jdbc:postgresql://localhost:5432/bdtest2 from strix
+        Connect to:jdbc:postgresql://localhost:5432/template1 from strix
         Submiting 10 queries: SELECT 1;
         Fetched rows: 10, total bytes: 25, bytes/rows: 2.5
 

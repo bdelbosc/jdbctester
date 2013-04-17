@@ -1,3 +1,23 @@
+/*
+ * (C) Copyright 2013 Nuxeo SAS <http://nuxeo.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * Author: bdelbosc@nuxeo.com
+ *
+ */
 package org.nuxeo;
 
 import java.io.ByteArrayOutputStream;
@@ -68,8 +88,8 @@ public class App {
         PreparedStatement ps = null;
         ResultSet rs = null;
         TimerContext tc = null;
-        int repeat = Integer.valueOf(System.getProperty(REPEAT_KEY,
-                DEFAULT_REPEAT)).intValue();
+        int repeat = Integer.valueOf(
+                System.getProperty(REPEAT_KEY, DEFAULT_REPEAT)).intValue();
 
         log.info("Submiting " + repeat + " queries: " + query);
         try {
@@ -181,7 +201,9 @@ public class App {
         try {
             fs = new FileInputStream(System.getProperty(CONFIG_KEY));
         } catch (FileNotFoundException e) {
-            log.error("Property file not found: " + System.getProperty(CONFIG_KEY, CONFIG_KEY), e);
+            log.error(
+                    "Property file not found: "
+                            + System.getProperty(CONFIG_KEY, CONFIG_KEY), e);
             return null;
         }
         try {
