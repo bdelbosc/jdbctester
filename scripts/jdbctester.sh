@@ -1,11 +1,11 @@
 #!/bin/sh
-HERE=$(dirname $(readlink -e $0))
+HERE=$(cd $(dirname $0); pwd -P)
 if [ -x $1 ]; then
     echo "Error: Missing parameter"
     echo "Usage: $0 PROPERTY_FILE [REPEAT]"
     exit 1
 fi
-CONFIG=`readlink -e $1`
+CONFIG=$(cd $(dirname $1); pwd)/$(basename $1)
 if [ ! -r $1 ]; then
     echo "Error: property file $1, not found"
     exit 1
