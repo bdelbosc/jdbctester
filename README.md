@@ -58,7 +58,7 @@ parameters.
 Note that by default jdbctester.sh set the following options, you
 shoud check that it matches your database locale:
 
-     -duser.language=en -Duser.country=US 
+     -Duser.language=en -Duser.country=US
 
 
 ## Invocation
