@@ -11,7 +11,7 @@
     <dependency>
       <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>9.2-1002.jdbc4</version>
+      <version>9.2-1002-jdbc4</version>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>
@@ -47,12 +47,12 @@
     <dependency>
       <groupId>com.yammer.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>3.0.0-20130227</version>
+      <version>3.0.0-BETA1</version>
     </dependency>
     <dependency>
       <groupId>com.yammer.metrics</groupId>
       <artifactId>metrics-graphite</artifactId>
-      <version>3.0.0-20130227</version>
+      <version>3.0.0-BETA1</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
