@@ -23,12 +23,6 @@
       <artifactId>jtds</artifactId>
       <version>1.2.4</version>
     </dependency>
-    <!-- dependency>
-      <groupId>com.oracle</groupId>
-      <artifactId>ojdbc6</artifactId>
-      <version>11.2.0.2</version>
-      <scope>provided</scope>
-    </dependency -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -47,12 +41,12 @@
     <dependency>
       <groupId>com.yammer.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>3.0.0-BETA1</version>
+      <version>3.0.0-20130227</version>
     </dependency>
     <dependency>
       <groupId>com.yammer.metrics</groupId>
       <artifactId>metrics-graphite</artifactId>
-      <version>3.0.0-BETA1</version>
+      <version>3.0.0-20130227</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -61,5 +55,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>public</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+      <releases>
+	<enabled>true</enabled>
+      </releases>
+      <snapshots>
+	<enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 </project>
